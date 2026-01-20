@@ -3,11 +3,14 @@
 ### To use your own data, create a .env file in the root directory and fill in the variables below
 #####################################################################################################
 
+## IMAGE_TAG is used to tag the docker image and compose file, default is latest
+#IMAGE_TAG=latest
+
 ## APP Garmin, Garmin-CN, Strava, Nike_to_Strava, Keep
 #APP=Garmin
 
 ## If you chose an APP, comment out the respective variables
-# NRC
+# NRC, Nike_to_Strava
 #NIKE_REFRESH_TOKEN=
 
 # Garmin and Garmin-CN
@@ -45,6 +48,10 @@ VITE_SHOW_ELEVATION_GAIN=true
 ## richer title for the activity types (like garmin style)
 VITE_RICH_TITLE=false
 
+## Map tile vendor, maptiler, mapbox, stadiamaps. Default is mapbox
+#VITE_MAP_TILE_VENDOR=mapbox
+#VITE_MAP_TILE_ACCESS_TOKEN=Gt5R0jT8tuIYxW6sNrAg
+
 ## See: https://docs.mapbox.com/help/dive-deeper/access-tokens/
 ## https://console.mapbox.com/account/access-tokens/
 ## For security reasons, please avoid using the default public token provided by Mapbox as much as possible.
@@ -54,7 +61,7 @@ VITE_RICH_TITLE=false
 
 #VITE_USE_ANIMATION_FOR_GRID=false
 
-## Optional, only get runs fromGarmin and Garmin-CN, default is false
+## Optional, only get runs from Garmin and Garmin-CN, default is false
 #ONLY_RUN=true
 
 ## Optional change site path
@@ -76,11 +83,13 @@ TITLE="my running page"
 #HOSTNAME=myhostname.tld
 
 ## If using authentication middleware
-#AUTH_PROVIDER=middleware
+#AUTH_PROVIDER=middlewareauth
 
 ## if Docker network exists for internal/Internet access
+## if network exists set NETWORK=EXISTINGNAME and NETWORK_EXTERNAL=true
 #NETWORK=network
 #NETWORK_EXTERNAL=true
 
 ## Rebuild interval in minutes, default builds once (1440 minutes = 24 hours)
+## empty to disable and sync once
 #INTERVAL_MIN=1440

@@ -105,5 +105,6 @@ if [[ -n "$INTERVAL_MIN" ]]; then
 else
 	echo "Rebuilding stats once"
 	build_stats
+	echo "tailing /dev/null, Ctrl+C to exit"
 	tail -f /dev/null
 fi

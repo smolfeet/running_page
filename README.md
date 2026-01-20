@@ -254,7 +254,24 @@ Persistent data is stored in the `data` directory.
 - `data/TCX_OUT` TCX files of activities
 - `data/dist` static files of the website
 
-## Local sync data
+### Missing  data, remove it from data/activities.json
+RUN_ID=1768254480000
+jq -c 'map(select(.run_id != env.RUN_ID))' data/activities.json > activities-edited.json
+mv activities-edited.json data/activities.json
+##$ remove it from data.db (SQLite)
+`SELECT * FROM "activities" WHERE run_id = "1768254480000"`
+
+`cat ~/bin/edit_sqlite.sh`
+
+```bash
+#!/bin/bash
+docker run -it --rm -p 8088:8080 -v $PWD/data:/data -e SQLITE_DATABASE="data.db" coleifer/sqlite-web
+```
+### remove it from imported.json
+Need to find matching GPX file
+
+### force run sync/build
+docker exec -it running_page /bin/bash -c "INTERVAL_MIN= ./build_stats.sh"
 
 ### Modifying Mapbox token
 
