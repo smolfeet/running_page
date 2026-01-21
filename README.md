@@ -248,17 +248,17 @@ http://hostname:<portFrom .env>
 Persistent data is stored in the `data` directory.
 - `data/data.db` SQLite database of activities
 - `data/activities.json` JSON of activities
-- `data/imported.json` JSON of imported activities
-- `data/GPX_OUT` GPX files of activities
-- `data/FIT_OUT` FIT files of activities
-- `data/TCX_OUT` TCX files of activities
-- `data/dist` static files of the website
+- `data/imported.json` JSON imported activities from GPX, TCX, FIT files
+- `data/GPX_OUT` GPX activity files
+- `data/FIT_OUT` FIT activity files
+- `data/TCX_OUT` TCX activity files
+- `data/dist` static files for website
 
-### Missing  data, remove it from data/activities.json
+### Missing data, remove it from data/activities.json and rerun sync/build
 RUN_ID=1768254480000
 jq -c 'map(select(.run_id != env.RUN_ID))' data/activities.json > activities-edited.json
 mv activities-edited.json data/activities.json
-##$ remove it from data.db (SQLite)
+## remove it from data.db (SQLite)
 `SELECT * FROM "activities" WHERE run_id = "1768254480000"`
 
 `cat ~/bin/edit_sqlite.sh`
