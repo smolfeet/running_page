@@ -107,7 +107,7 @@ def update_or_create_activity(session, run_activity):
             start_point = run_activity.start_latlng
             location_country = getattr(run_activity, "location_country", "")
             
-            = "en" if os.getenv("VITE_IS_CHINESE") == "false" else "zh-CN"
+            geo_language = "en" if os.getenv("VITE_IS_CHINESE") == "false" else "zh-CN"
             # or China for #176 to fix
             if not location_country and start_point or location_country == "China":
                 try:
